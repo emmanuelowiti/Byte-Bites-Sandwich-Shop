@@ -1,25 +1,32 @@
 package com.pluralsight;
 
-import com.pluralsight.CalculatePrice;
-import com.pluralsight.Toppings;
-import com.pluralsight.Items;
-
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Sandwich item.
+ */
 public class Sandwich extends Items implements CalculatePrice {
 
     private String sandwichBread;
     private String sandwichSize;
     private String isToasted;
-    private List<Toppings> toppingsList =  new ArrayList<Toppings>();
+    private List<Toppings> toppingsList = new ArrayList<>();
 
-    //FIXED VALUES
-    private List<String> breadOptions = new ArrayList<>(List.of("White Bread", "Wheat", "Rye", "Wrap"));
-    private static final double sandwichSize4= 5.50, sandwichSize8= 7.00, sandwichSize12= 8.50;
+    // Fixed prices
+    private static final double sandwichSize4 = 5.50, sandwichSize8 = 7.00, sandwichSize12 = 8.50;
+    private final List<String> breadOptions = new ArrayList<>(List.of("White", "Wheat", "Rye", "Wrap"));
 
+    public Sandwich() { }
 
-    //ALL CONSTRUCTORS
+    public Sandwich(String sandwichBread, String sandwichSize, List<Toppings> toppingsList, String isToasted) {
+        super("Custom Sandwich", 1);
+        this.sandwichBread = sandwichBread;
+        this.sandwichSize = sandwichSize;
+        this.toppingsList = new ArrayList<>(toppingsList);
+        this.isToasted = isToasted;
+    }
+
     public Sandwich(String name, int quantity, String sandwichBread, String sandwichSize, String isToasted) {
         super(name, quantity);
         this.sandwichBread = sandwichBread;
@@ -27,109 +34,34 @@ public class Sandwich extends Items implements CalculatePrice {
         this.isToasted = isToasted;
     }
 
-    public Sandwich(String name, int quantity, String sandwichBread, String sandwichSize,  String isToasted, List<Toppings> toppingsList) {
-        super(name, quantity);
-        this.sandwichBread = sandwichBread;
-        this.sandwichSize = sandwichSize;
-        this.isToasted = isToasted;
-        this.toppingsList = toppingsList;
-    }
+    public List<String> getBreadOptions() { return breadOptions; }
 
-    public Sandwich(String name, int quantity, String sandwichSize) {
-        super(name, quantity);
-        this.sandwichSize = sandwichSize;
-    }
+    public void addTopping(Toppings topping) { toppingsList.add(topping); }
 
-    public Sandwich(String sandwichBread, String sandwichSize, String isToasted) {
-        this.sandwichBread = sandwichBread;
-        this.sandwichSize = sandwichSize;
-        this.isToasted = isToasted;
-    }
-
-    public Sandwich(String sandwichBread, String sandwichSize, List<Toppings> toppingsList, String isToasted) {
-        this.sandwichBread = sandwichBread;
-        this.sandwichSize = sandwichSize;
-        this.toppingsList = new ArrayList<>(toppingsList);
-        this.isToasted = isToasted;
-    }
-
-    public Sandwich(){}
-
-
-    //ALL GETTERS AND SETTERS
-    public String getSandwichSize() {
-        return sandwichSize;
-    }
-
-    public void setSandwichSize(String sandwichSize) {
-        this.sandwichSize = sandwichSize;
-    }
-
-    public String getSandwichBread() {
-        return sandwichBread;
-    }
-
-    public void setSandwichBread(String sandwichBread) {
-        this.sandwichBread = sandwichBread;
-    }
-
-    public String isToasted() {
-        return isToasted;
-    }
-
-    public void setToasted(String toasted) {
-        this.isToasted = toasted;
-    }
-
-    public List<Toppings> getToppingsList() {
-        return toppingsList;
-    }
-
-    public List<String> getBreadOptions(){
-        return breadOptions;
-    }
-
-
-    //ADD TOPPINGS
-    public void addTopping(Toppings topping) {
-        toppingsList.add(topping);  //Add the regular topping
-    }
-
-
-    //MAIN CALCULATIONS
-    //calculate sandwich and topping price
     @Override
     public double calculatePrice() {
-
-        double sandwichPrice = switch (sandwichSize) {
+        double base = switch (sandwichSize) {
             case "4" -> sandwichSize4;
             case "8" -> sandwichSize8;
             case "12" -> sandwichSize12;
-            default -> 0;
+            default -> 0.0;
         };
-
         double toppingsCost = toppingsList.stream()
-                .mapToDouble(topping -> topping.calculateToppingCost(sandwichSize))
+                .mapToDouble(t -> t.calculateToppingCost(sandwichSize))
                 .sum();
-        return sandwichPrice + toppingsCost;
+        return base + toppingsCost;
     }
-
 
     @Override
     public String toString() {
-        StringBuilder sandwichDescription = new StringBuilder("Sandwich: Custom Sandwich\n");
-        sandwichDescription.append("  Size: ").append(sandwichSize).append("\n")
-                .append("  Bread: ").append(sandwichBread).append("\n")
-                .append("  Toasted: ").append(isToasted).append("\n")
-                .append("  Toppings:\n");
-
-        //TOPPING TO-STRING WILL SHOW UP HERE
-        for (Toppings topping : toppingsList) {
-            sandwichDescription.append("    ").append(topping.toString()).append("\n");
-        }
-
-        double sandwichPrice = calculatePrice();
-        sandwichDescription.append("  Total: $").append(String.format("%.2f",sandwichPrice));
-        return sandwichDescription.toString();
+        StringBuilder sb = new StringBuilder();
+        sb.append("Sandwich: ").append(getName() == null ? "Custom Sandwich" : getName()).append("\n");
+        sb.append("  Size: ").append(sandwichSize).append("\n");
+        sb.append("  Bread: ").append(sandwichBread).append("\n");
+        sb.append("  Toasted: ").append(isToasted).append("\n");
+        sb.append("  Toppings:\n");
+        for (Toppings t : toppingsList) sb.append("    ").append(t.toString()).append("\n");
+        sb.append("  Total: $").append(String.format("%.2f", calculatePrice())).append("\n");
+        return sb.toString();
     }
 }

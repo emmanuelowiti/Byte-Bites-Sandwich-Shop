@@ -1,85 +1,54 @@
-
 package com.pluralsight;
-
-import com.pluralsight.Items.Chips;
-import com.pluralsight.Items.Drinks;
-import com.pluralsight.Items.Sandwich;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Holds list of Items in the current order and formats a receipt.
+ */
 public class Orders implements CalculatePrice {
 
-    private List<Items> itemList = new ArrayList<>();
+    private final List<Items> itemList = new ArrayList<>();
 
-    //add items
-    public void addItems(Items items){
-        itemList.add(items);
+    public void addItems(Items items) {
+        itemList.add(0, items); // newest first
     }
 
-    //clear items in the order
-    public void clearOrder() {
-        itemList.clear();
-    }
+    public void clearOrder() { itemList.clear(); }
 
-    //TOTAL CALCULATION
+    @Override
     public double calculatePrice() {
-        return itemList.stream()
-                .mapToDouble(Items::calculatePrice) //Map each item to its price
-                .sum(); //Sum up all the prices
+        return itemList.stream().mapToDouble(Items::calculatePrice).sum();
     }
 
+    public int countSandwiches() {
+        return (int) itemList.stream().filter(i -> i instanceof Sandwich).count();
+    }
+
+    public int countDrinksChips() {
+        return (int) itemList.stream().filter(i -> i instanceof Drinks || i instanceof Chips).count();
+    }
+
+    public boolean isValid() {
+        if (countSandwiches() == 0 && countDrinksChips() == 0) return false;
+        return true;
+    }
 
     @Override
     public String toString() {
-        //getting current date and time
         LocalDateTime now = LocalDateTime.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
-        String formattedDateTime = now.format(formatter);
-
-        //receipt header, adds current date and time
-        StringBuilder receipt = new StringBuilder("Receipt:\nDate: ").append(formattedDateTime).append("\n");
-        receipt.append("-----------------------------------\n");
-
-        //separating items by type
-        List<Items> sandwiches = new ArrayList<>();
-        List<Items> drinks = new ArrayList<>();
-        List<Items> chips = new ArrayList<>();
-
-        //if this object in items is true, add to the type
+        DateTimeFormatter fmt = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+        StringBuilder sb = new StringBuilder();
+        sb.append("Receipt:\nDate: ").append(now.format(fmt)).append("\n");
+        sb.append("------------------------------------------------\n");
         for (Items item : itemList) {
-            if (item instanceof Sandwich) {
-                sandwiches.add(item);
-            } else if (item instanceof Drinks) {
-                drinks.add(item);
-            } else if (item instanceof Chips) {
-                chips.add(item);
-            }
+            sb.append(item.toString()).append("\n");
         }
-
-        //appends sandwich first
-        for (Items sandwich : sandwiches) {
-            receipt.append(sandwich.toString()).append("\n");
-        }
-
-        //appends drinks next
-        for (Items drink : drinks) {
-            receipt.append(drink.toString()).append("\n");
-        }
-
-        //appends chips last
-        for (Items chip : chips) {
-            receipt.append(chip.toString()).append("\n");
-        }
-
-        //adds total price
-        receipt.append("-----------------------------------\n")
-                .append("Total: $").append(String.format("%.2f", calculatePrice()))
-                .append("\n-----------------------------------");
-
-        return receipt.toString();
+        sb.append("------------------------------------------------\n");
+        sb.append("Total: $").append(String.format("%.2f", calculatePrice())).append("\n");
+        sb.append("------------------------------------------------\n");
+        return sb.toString();
     }
-
 }
