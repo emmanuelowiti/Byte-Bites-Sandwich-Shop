@@ -55,7 +55,96 @@ public class UI {
             0 - Cancel Order
         =================================================
         """;
+
+        int userChoice;
+        do{
+            try{
+                userChoice = scanner.nextInt();
+                scanner.nextLine();
+                switch(userChoice) {
+                    case 1:
+                        new SandwichInterphase().processAddSandwich();
+                        break;
+                    case 2:
+                        new DrinksInterphase().processAddDrinks();
+                        break;
+                    case 3:
+                        new ChipsInterphase().processAddChips();
+                        break;
+                    case 4:
+                        processCheckout();
+                        break;
+                    case 0:
+                        orderList.clearOrder();
+                        return;
+                    default:
+                        System.out.println("Invalid entry. Try again");
+                }
+            } catch (Exception e) {
+                System.out.println("Invalid entry. Try again" + e.getMessage());
+            }
+        }while(true);
     }
+public void processCheckout() {
+
+    System.out.println("""
+                
+                =================================================
+                               ORDER SUMMARY
+                =================================================
+                """);
+    System.out.println(orderList.toString());
+
+
+    String options = """
+        =================================================
+                        CHECKOUT
+        =================================================
+            Please select from the following choices:
+            1 - Confirm Checkout
+            2 - Cancel Order
+            0 - Back
+        =================================================
+        """;
+
+
+    int userChoice;
+    do {
+        try {
+            userChoice = scanner.nextInt();
+            scanner.nextLine();
+
+            if (userChoice == 1) {
+                //confirm checkout
+                //writes order lists into a file after turning it into a string
+                OrderFileManager.writeOrderReceipt(orderList.toString());
+                System.out.println("Order confirmed and receipt saved.");
+                System.out.println("Thank you for your purchase!!");
+                orderList.clearOrder();
+                showHomeScreen(); //return to home screen after checkout
+                return;
+
+            } else if (userChoice == 2) {
+                //cancel order goes back to home screen
+                System.out.println("Order cancelled. Returning to home screen.");
+                orderList.clearOrder();
+                showHomeScreen();
+                return;
+
+            } else if (userChoice == 0) {
+                //go back to order screen
+                return;
+
+            } else {
+                System.out.println("Invalid selection. Please try again.");
+            }
+
+        } catch (Exception e) {
+            System.out.println("Invalid selection. Please try again." + e.getMessage());
+        }
+    } while (true);
+}
+
 
 
 
