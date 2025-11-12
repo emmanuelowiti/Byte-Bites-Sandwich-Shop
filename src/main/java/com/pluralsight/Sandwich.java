@@ -1,8 +1,8 @@
 package com.pluralsight;
 
-import com.pluralsight.Checkout.CalculatePrice;
-import com.pluralsight.Sandwich.Toppings;
-import com.pluralsight.Checkout.Items;
+import com.pluralsight.CalculatePrice;
+import com.pluralsight.Toppings;
+import com.pluralsight.Items;
 
 import java.util.ArrayList;
 import java.util.List;

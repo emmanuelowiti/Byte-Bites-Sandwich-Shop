@@ -1,7 +1,7 @@
 package com.pluralsight;
 
-import com.pluralsight.Items.Drinks;
-import com.pluralsight.Util.Console;
+import com.pluralsight.Drinks;
+import com.pluralsight;
 import java.util.List;
 
 import static com.pluralsight.OrderScreen.scanner;
