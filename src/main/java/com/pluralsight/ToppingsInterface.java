@@ -18,7 +18,8 @@ public class ToppingsInterface {
                 Console.println("  " + (i + 1) + " - " + meatOptions.get(i));
             }
             int choice = Console.promptInt("Choose: ");
-            if (choice == 0) break;
+            if (choice == 0)
+                break;
             if (choice >= 1 && choice <= meatOptions.size()) {
                 String selected = meatOptions.get(choice - 1);
                 String extra = Console.promptLine("Would you like extra " + selected + "? (Yes/No): ");

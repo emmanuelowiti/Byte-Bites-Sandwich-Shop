@@ -36,19 +36,36 @@ public class Toppings {
         this.toppingIsExtra = toppingIsExtra;
     }
 
-    public String getToppingName() { return toppingName; }
-    public String getToppingType() { return toppingType; }
-    public boolean isToppingIsExtra() { return toppingIsExtra; }
+    public String getToppingName() {
+        return toppingName;
+    }
+    public String getToppingType() {
+        return toppingType;
+    }
+    public boolean isToppingIsExtra() {
+        return toppingIsExtra;
+    }
 
-    public List<String> getMeatOptions() { return meatOptions; }
-    public List<String> getCheeseOptions() { return cheeseOptions; }
-    public List<String> getRegularOptions() { return regularOptions; }
-    public List<String> getSauceOptions() { return sauceOptions; }
+    public List<String> getMeatOptions() {
+        return meatOptions;
+    }
+    public List<String> getCheeseOptions() {
+        return cheeseOptions;
+    }
+    public List<String> getRegularOptions() {
+        return regularOptions;
+    }
+    public List<String> getSauceOptions() {
+        return sauceOptions;
+    }
 
     public double calculateToppingCost(String sandwichSize) {
-        if (toppingType == null) return 0.0;
-        if (toppingType.equalsIgnoreCase("Meat")) return calculateMeatCost(sandwichSize);
-        if (toppingType.equalsIgnoreCase("Cheese")) return calculateCheeseCost(sandwichSize);
+        if (toppingType == null)
+            return 0.0;
+        if (toppingType.equalsIgnoreCase("Meat"))
+            return calculateMeatCost(sandwichSize);
+        if (toppingType.equalsIgnoreCase("Cheese"))
+            return calculateCheeseCost(sandwichSize);
         return 0.0;
     }
 

@@ -16,10 +16,14 @@ public class Chips extends Items implements CalculatePrice {
         this.chipsType = chipsType;
     }
 
-    public List<String> getChipsTypeList() { return chipsTypeList; }
+    public List<String> getChipsTypeList() {
+        return chipsTypeList;
+    }
 
     @Override
-    public double calculatePrice() { return chipsPrice; }
+    public double calculatePrice() {
+        return chipsPrice;
+    }
 
     @Override
     public String toString() {
