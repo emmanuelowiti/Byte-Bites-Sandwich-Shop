@@ -17,15 +17,18 @@ public class ToppingsInterface {
             for (int i = 0; i < meatOptions.size(); i++) {
                 Console.println("  " + (i + 1) + " - " + meatOptions.get(i));
             }
+
             int choice = Console.promptInt("Choose: ");
             if (choice == 0)
                 break;
+
             if (choice >= 1 && choice <= meatOptions.size()) {
                 String selected = meatOptions.get(choice - 1);
                 String extra = Console.promptLine("Would you like extra " + selected + "? (Yes/No): ");
                 boolean isExtra = extra.equalsIgnoreCase("y") || extra.equalsIgnoreCase("yes");
                 toppingsList.add(new Toppings(selected, "Meat", isExtra));
                 break;
+
             } else {
                 Console.printlnColor("Invalid selection. Try again.", Console.RED);
             }
@@ -39,6 +42,7 @@ public class ToppingsInterface {
             for (int i = 0; i < cheeseOptions.size(); i++) {
                 Console.println("  " + (i + 1) + " - " + cheeseOptions.get(i));
             }
+
             int choice = Console.promptInt("Choose: ");
             if (choice == 0) break;
             if (choice >= 1 && choice <= cheeseOptions.size()) {

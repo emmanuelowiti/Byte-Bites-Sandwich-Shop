@@ -39,11 +39,14 @@ public class SandwichInterface {
         Console.println("  0 - Cancel");
 
         int breadChoice = Console.promptInt("Choose bread: ");
-        if (breadChoice == 0) return;
+        if (breadChoice == 0)
+            return;
+
         if (breadChoice < 1 || breadChoice > breadOptions.size()) {
             Console.printlnColor("Invalid bread choice.", Console.RED);
             return;
         }
+
         String bread = breadOptions.get(breadChoice - 1);
 
         String size;
@@ -80,8 +83,8 @@ public class SandwichInterface {
         Console.printlnColor("""
             =================================================
             Signature sandwiches:
-              1 - BLT
-              2 - Philly Cheese Steak
+              1 - BLT Supreme Sandwich
+              2 - Philly Cheese Steak Sandwich
               0 - Cancel
             =================================================
             """, Console.CYAN);

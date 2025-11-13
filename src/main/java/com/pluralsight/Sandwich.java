@@ -2,9 +2,7 @@ package com.pluralsight;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Sandwich item.
- */
+//Class sandwich extends the interface Calculate price to check out.
 public class Sandwich extends Items implements CalculatePrice {
 
     private String sandwichBread;
@@ -12,12 +10,17 @@ public class Sandwich extends Items implements CalculatePrice {
     private String isToasted;
     private List<Toppings> toppingsList = new ArrayList<>();
 
-    // Fixed prices
+    // Fixed prices for the different sandwich prices depending of the sizes
     private static final double sandwichSize4 = 5.50, sandwichSize8 = 7.00, sandwichSize12 = 8.50;
+
+    //Different bread options stored in a List
     private final List<String> breadOptions = new ArrayList<>(List.of("White", "Wheat", "Rye", "Wrap"));
 
-    public Sandwich() { }
+    // constructor for the sandwich class
+    public Sandwich() {
+    }
 
+    //constructor that  takes parameters
     public Sandwich(String sandwichBread, String sandwichSize, List<Toppings> toppingsList, String isToasted) {
         super("Custom Sandwich", 1);
         this.sandwichBread = sandwichBread;
@@ -33,9 +36,14 @@ public class Sandwich extends Items implements CalculatePrice {
         this.isToasted = isToasted;
     }
 
-    public List<String> getBreadOptions() { return breadOptions; }
+    public List<String> getBreadOptions() {
+        return breadOptions;
+    }
 
-    public void addTopping(Toppings topping) { toppingsList.add(topping); }
+    //Add toppings method which passes in the topping
+    public void addTopping(Toppings topping) {
+        toppingsList.add(topping);
+    }
 
     @Override
     public double calculatePrice() {
@@ -45,6 +53,7 @@ public class Sandwich extends Items implements CalculatePrice {
             case "12" -> sandwichSize12;
             default -> 0.0;
         };
+
         double toppingsCost = toppingsList.stream()
                 .mapToDouble(t -> t.calculateToppingCost(sandwichSize))
                 .sum();
@@ -54,6 +63,7 @@ public class Sandwich extends Items implements CalculatePrice {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
+
         sb.append("Sandwich: ").append(getName() == null ? "Custom Sandwich" : getName()).append("\n");
         sb.append("  Size: ").append(sandwichSize).append("\n");
         sb.append("  Bread: ").append(sandwichBread).append("\n");
