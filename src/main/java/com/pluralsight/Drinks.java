@@ -19,7 +19,9 @@ public class Drinks extends Items implements CalculatePrice {
         this.drinkSize = drinkSize;
     }
 
-    public List<String> getDrinkFlavorList() { return drinkFlavorList; }
+    public List<String> getDrinkFlavorList() {
+        return drinkFlavorList;
+    }
 
     @Override
     public double calculatePrice() {
