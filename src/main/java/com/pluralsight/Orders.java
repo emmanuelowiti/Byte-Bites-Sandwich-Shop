@@ -16,7 +16,9 @@ public class Orders implements CalculatePrice {
         itemList.add(0, items); // newest first
     }
 
-    public void clearOrder() { itemList.clear(); }
+    public void clearOrder() {
+        itemList.clear();
+    }
 
     @Override
     public double calculatePrice() {

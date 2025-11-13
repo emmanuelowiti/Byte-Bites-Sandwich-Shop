@@ -11,7 +11,9 @@ public class Sandwich extends Items implements CalculatePrice {
     private List<Toppings> toppingsList = new ArrayList<>();
 
     // Fixed prices for the different sandwich prices depending of the sizes
-    private static final double sandwichSize4 = 5.50, sandwichSize8 = 7.00, sandwichSize12 = 8.50;
+    private static final double sandwichSize4 = 5.50;
+    private static final double sandwichSize8 = 7.00;
+    private static final double sandwichSize12 = 8.50;
 
     //Different bread options stored in a List
     private final List<String> breadOptions = new ArrayList<>(List.of("White", "Wheat", "Rye", "Wrap"));
@@ -35,7 +37,7 @@ public class Sandwich extends Items implements CalculatePrice {
         this.sandwichSize = sandwichSize;
         this.isToasted = isToasted;
     }
-
+    //return a list of bread options wheat, rye, etc.
     public List<String> getBreadOptions() {
         return breadOptions;
     }

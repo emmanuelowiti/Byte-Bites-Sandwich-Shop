@@ -8,7 +8,7 @@ public class Drinks extends Items implements CalculatePrice {
     private String drinkSize;
     private String drinkFlavor;
 
-    private final List<String> drinkFlavorList = new ArrayList<>(List.of("Coke", "Pepsi", "Sprite", "Mountain Dew", "Tropicana", "Arizona"));
+    private final List<String> drinkFlavorList = new ArrayList<>(List.of("Diet Coke", "Cherry Pepsi", "Sprite", "Baja blast", "Tropicana", "Water"));
     private static final double drinksSmall = 2.0, drinksMedium = 2.5, drinksLarge = 3.0;
 
     public Drinks() { }

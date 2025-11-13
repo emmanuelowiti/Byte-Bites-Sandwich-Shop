@@ -1,8 +1,6 @@
 package com.pluralsight;
 
-/**
- * Base item class.
- */
+//Abstract Item class extended by sandwich, chips and drinks class.
 public abstract class Items {
     private String name;
     private int quantity;
@@ -16,6 +14,7 @@ public abstract class Items {
 
     public abstract double calculatePrice();
 
+    //Getters and setters
     public String getName() {
         return name;
     }
@@ -30,6 +29,7 @@ public abstract class Items {
         this.quantity = quantity;
     }
 
+    //ToString method
     @Override
     public String toString() {
         return name + (quantity > 0 ? " x" + quantity : "");

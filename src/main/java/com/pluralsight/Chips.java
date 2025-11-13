@@ -3,6 +3,7 @@ package com.pluralsight;
 import java.util.ArrayList;
 import java.util.List;
 
+//Class chips(child class) extends Item class(Parent class)
 public class Chips extends Items implements CalculatePrice {
 
     private String chipsType;
