@@ -9,7 +9,7 @@ public class ToppingsInterface {
     public void processAddToppings(List<Toppings> toppingsList, String sandwichSize) {
         Toppings toppingsModel = new Toppings();
 
-        // MEATS
+        // Meat toppings for a random sandwich
         while (true) {
             Console.printlnColor("==========================================", Console.BLUE);
             Console.println("Choose a meat topping (or 0 to skip):");
@@ -18,7 +18,9 @@ public class ToppingsInterface {
                 Console.println("  " + (i + 1) + " - " + meatOptions.get(i));
             }
 
-            int choice = Console.promptInt("Choose: ");
+            int choice = Console.promptInt("Selection made: ");
+
+            //if the choice is 0 (zero) it skips adding meat
             if (choice == 0)
                 break;
 

@@ -24,6 +24,8 @@ public class Toppings {
     private static final double costCheeseSize4 = 0.75, costCheeseSize8 = 1.50, costCheeseSize12 = 2.25;
     private static final double extraCostCheeseSize4 = 0.30, extraCostCheeseSize8 = 0.60, extraCostCheeseSize12 = 0.90;
 
+
+    //Constructors
     public Toppings() { }
 
     public Toppings(String toppingName, String toppingType) {
@@ -36,6 +38,7 @@ public class Toppings {
         this.toppingIsExtra = toppingIsExtra;
     }
 
+    //Getters and setters
     public String getToppingName() {
         return toppingName;
     }

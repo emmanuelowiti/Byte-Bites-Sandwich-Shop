@@ -15,7 +15,9 @@ public class ChipsInterface {
         Console.println("  0 - Cancel");
 
         int choice = Console.promptInt("Choose chips: ");
-        if (choice == 0) return;
+        if (choice == 0)
+            return;
+
         if (choice < 1 || choice > types.size()) {
             Console.printlnColor("Invalid choice.", Console.RED);
             return;

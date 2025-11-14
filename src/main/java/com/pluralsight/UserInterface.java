@@ -65,6 +65,12 @@ public class UserInterface {
                 case 3 -> chipsInterface.processAddChips();
                 case 4 -> {
                     processCheckout();
+
+                    try {
+                        Thread.sleep(5000); // 1000 ms = 1 second
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
                     return;
                 }
                 case 0 -> {
@@ -80,6 +86,7 @@ public class UserInterface {
         }
     }
 
+    //process checkout menu method.
     public void processCheckout() {
         printlnColor("\n=================================================\n               ORDER SUMMARY\n=================================================\n", BLUE);
         println(orderList.toString());
@@ -103,6 +110,12 @@ public class UserInterface {
                     OrderFileManager.writeOrderReceipt(orderList.toString());
                     printlnColor("Order confirmed and receipt saved. Thank you for your purchase!!", GREEN);
                     orderList.clearOrder();
+
+                    try {
+                        Thread.sleep(5000); // 1000 ms = 1 second
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
                     return;
                 }
                 case 2 -> {

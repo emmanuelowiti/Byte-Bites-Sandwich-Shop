@@ -7,9 +7,13 @@ import java.util.List;
 public class Chips extends Items implements CalculatePrice {
 
     private String chipsType;
-    private final List<String> chipsTypeList = new ArrayList<>(List.of("Lays Original", "Cheetos Hot", "Doritos Cool Ranch"));
-    private static final double chipsPrice = 1.5;
+    //immutable list of strings for the customer to choose from
+    private final List<String> chipsTypeList = new ArrayList<>(List.of("Ruffles flaming hot", "Cheetos Hot", "Lays barbeque","Frito lays Classic","Funyons Sour cream"));
 
+    //Immutable final price of chips
+    private static final double chipsPrice = 2.69;
+
+    //Constructors
     public Chips() { }
 
     public Chips(String chipsType) {
@@ -17,15 +21,19 @@ public class Chips extends Items implements CalculatePrice {
         this.chipsType = chipsType;
     }
 
+
+    //Getter for the List of chips
     public List<String> getChipsTypeList() {
         return chipsTypeList;
     }
 
+    //Calculate price implemented
     @Override
     public double calculatePrice() {
         return chipsPrice;
     }
 
+    //ToString method
     @Override
     public String toString() {
         return "Chips: " + chipsType + " - $" + String.format("%.2f", calculatePrice());

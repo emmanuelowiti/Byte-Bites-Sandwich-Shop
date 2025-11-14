@@ -8,6 +8,7 @@ import java.util.List;
  */
 public class SandwichInterface {
 
+    //Add sandwich method
     public void processAddSandwich() {
         Console.printlnColor("""
             =================================================
@@ -18,14 +19,22 @@ public class SandwichInterface {
             =================================================
             """, Console.CYAN);
 
-        int choice = Console.promptInt("Choose: ");
+        int choice = Console.promptInt("Selection made: ");
+
         switch (choice) {
+
+            //Goes to the make a custom sandwich project
             case 1 -> processCustomSandwich();
+
+            //Goes to the process signature sandwich
             case 2 -> processSignatureSandwich();
+
+            //Cancel making a sandwich order
             case 0 -> {
                 Console.printlnColor("Cancelling sandwich selection.", Console.YELLOW);
                 return;
             }
+            //Returns invalid selection prompt to handle any other input
             default -> Console.printlnColor("Invalid selection.", Console.RED);
         }
     }
