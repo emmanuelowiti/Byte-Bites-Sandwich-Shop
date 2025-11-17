@@ -24,7 +24,7 @@ class SandwichTest {
         double price = sandwich.calculatePrice();
 
         // Assert
-        double expectedPrice = 5.50 + 1.00 + 0.50; // base + cheese + lettuce
+        double expectedPrice = 5.50 + 2.00 + 0.55; // base + cheese + lettuce
         assertEquals(expectedPrice,price);
     }
 }

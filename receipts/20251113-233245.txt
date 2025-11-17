@@ -1,0 +1,20 @@
+Receipt:
+Date: 2025/11/13 23:32:45
+------------------------------------------------
+Chips: Lays barbeque - $2.69
+Drink: Diet Coke (Medium) - $2.50
+Sandwich: BLT
+  Size: 8
+  Bread: White
+  Toasted: Yes
+  Toppings:
+    - Bacon ($1.00)
+    - Cheddar ($0.75)
+    - Lettuce
+    - Tomato
+    - Ranch
+  Total: $10.50
+
+------------------------------------------------
+Total: $15.69
+------------------------------------------------

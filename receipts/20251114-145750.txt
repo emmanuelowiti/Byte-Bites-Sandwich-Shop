@@ -1,0 +1,18 @@
+Receipt:
+Date: 2025/11/14 14:57:50
+------------------------------------------------
+Drink: Cherry Pepsi (Medium) - $2.50
+Sandwich: Custom Sandwich
+  Size: 12
+  Bread: Wheat
+  Toasted: No
+  Toppings:
+    - Roast Beef ($1.50) (Extra)
+    - American ($0.75)
+    - Mushrooms
+    - Mayo
+  Total: $15.25
+
+------------------------------------------------
+Total: $17.75
+------------------------------------------------
